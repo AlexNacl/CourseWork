@@ -40,24 +40,27 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData) {
         canvasGroup.blocksRaycasts = true;
         Debug.Log("OnEnd");
-        if (Slot.dropped == false){
+        if (ConstantData.dropped == false){
             rectTransform.anchoredPosition = new Vector2(pX/canvas.scaleFactor, pY/canvas.scaleFactor);
             robogood.SetActive(true);
             roboangry.SetActive(false);
             Debug.Log("Dropped false");
-        } else if (Slot.wrongComp == true){
+        } else if (ConstantData.wrongComp == true){
             rectTransform.anchoredPosition = new Vector2(pX/canvas.scaleFactor, pY/canvas.scaleFactor);
             Debug.Log("DoingMyWork");
             robogood.SetActive(false);
             roboangry.SetActive(true);
-            Slot.wrongComp = false;
-            Slot.dropped = false;
-            TriggerDialog();
+            ConstantData.wrongComp = false;
+            ConstantData.dropped = false;
+            //TriggerDialog();
         } else
         {
+            Debug.Log("Check");
             self.SetActive(false);
             robogood.SetActive(true);
             roboangry.SetActive(false);
+            ConstantData.wrongComp = false;
+            ConstantData.dropped = false;
         }
     }
 

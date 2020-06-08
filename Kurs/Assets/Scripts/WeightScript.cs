@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WeightScript : MonoBehaviour
 {
     public Text self;
+    public Text WText;
     public Dialog dialogGood;
     public Dialog dialogBad;
     public Dialog dialogBadSecond;
@@ -14,6 +15,7 @@ public class WeightScript : MonoBehaviour
     public GameObject robogood;
     public GameObject roboangry;
     public bool secondPhase = false;
+    public bool FirstRed = false;
 
     public void TriggerDialogGood(){
         robogood.SetActive(true);
@@ -38,6 +40,7 @@ public class WeightScript : MonoBehaviour
 
     public void nextPhase(){
         secondPhase = true;
+        WText.text = ""+ConstantData.addWeight.ToString();
     }
     
     public void plusBtnClick(){
@@ -69,12 +72,12 @@ public class WeightScript : MonoBehaviour
             if (weight !=100){
             robogood.SetActive(false);
             roboangry.SetActive(true);
-            TriggerDialogBad();
+            //TriggerDialogBad();
             }
             if (weight == 100){
                 robogood.SetActive(true);
                 roboangry.SetActive(false);
-                TriggerDialogGood();
+                //TriggerDialogGood();
                 StepTwoTriggerRed.isTriggeredStepTwoWhite = true;
             }
         }
@@ -83,10 +86,52 @@ public class WeightScript : MonoBehaviour
                 TriggerDialogBadSecond();
             }
             if (weight == ConstantData.addWeight){
-                TriggerDialogGoodSecond();
-                StepTwoTriggerRed.isTriggeredStepThreeRed = true;
-                ConstantData.phaseNum = 1;
-                ConstantData.LibraOpen = true;
+                if (ConstantData.colorNumb == 3){
+                    if (SlotSecondPhase.Titanium == true){
+                        StepTwoTriggerRed.Titanium = true;
+                    }
+                    //TriggerDialogGoodSecond();
+                    StepTwoTriggerRed.isTriggeredStepThreeRed = true;
+                    ConstantData.phaseNum = 1;
+                    //ConstantData.LibraOpen = true;
+                }
+                if (ConstantData.colorNumb == 4){
+                    if (SlotSecondPhase.Ferrum == true){
+                        StepTwoTriggerRed.Ferrum = true;
+                    }
+                    //TriggerDialogGoodSecond();
+                    //StepTwoTriggerRed.isTriggeredStepThreeRed = true;
+                    ConstantData.phaseNum = 1;
+                    //ConstantData.LibraOpen = true;
+                }
+                if (ConstantData.colorNumb == 2){
+                    if (FirstRed == true){
+                        if (ConstantData.colorNumb == 2){
+                            if (SlotSecondPhase.Vanadium == true){
+                            StepTwoTriggerRed.Vanadium = true;
+                            SlotSecondPhase.readyNext = true;
+                            } else if (SlotSecondPhase.Chromium == true){
+                            StepTwoTriggerRed.Chromium = true;
+                            SlotSecondPhase.readyNext = true;
+                            } 
+                            StepTwoTriggerRed.isTriggeredStepThreeRed = true;
+                            ConstantData.phaseNum = 1;
+                            //ConstantData.LibraOpen = true;
+                        }
+                        //TriggerDialogGoodSecond();
+                        
+                    }
+                    else {
+                        FirstRed = true;
+                        if (ConstantData.colorNumb == 2){
+                            if (SlotSecondPhase.Vanadium == true){
+                            StepTwoTriggerRed.Vanadium = true;
+                            } else if (SlotSecondPhase.Chromium == true){
+                            StepTwoTriggerRed.Chromium = true;
+                            } 
+                        }
+                    }
+                }
             }
         }
         

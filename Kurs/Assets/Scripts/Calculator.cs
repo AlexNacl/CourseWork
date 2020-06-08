@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Calculator : MonoBehaviour
 {
-    public static bool whichButton = false;
+    public bool whichButton = false;
     public Text upper;
     public Text lower; 
     public Text resultText;
+    public Text WText;
+    public Text W2Text;
 
 
     public void upperBtnClick(){
@@ -130,8 +132,13 @@ public class Calculator : MonoBehaviour
     public void Calculate(){
         resultText.text ="";
         int result = (int)(float.Parse(upper.text)/(100/float.Parse(lower.text)-1));
-        resultText.text = "= " + result.ToString();
+        resultText.text = "" + result.ToString();
         ConstantData.addWeight = result;
+    }
+
+    public void WResult(){
+        WText.text = ""+ConstantData.colorBright.ToString();
+        W2Text.text = ""+ConstantData.colorBright.ToString();
     }
    
 }

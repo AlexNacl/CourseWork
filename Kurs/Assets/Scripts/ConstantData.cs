@@ -22,6 +22,9 @@ public class ConstantData : MonoBehaviour
     public static bool FurnaceOn = false;
     public static bool Freeze = false;
     public static bool Fail = false;
+    public static bool dropped = false;
+    public static bool wrongComp = false;
+    public static bool LibraZsecPhase = false;  
     public void ColorWhite() {
         colorNumb = 1;
     }
@@ -40,11 +43,17 @@ public class ConstantData : MonoBehaviour
     public void TableOpenScript(){
         TableOpen = true;
     }
-	public void AdjustBrightness(float choise){
-        colorBright = choise+1;
+	public void AdjustBrightnessBright(){
+        colorBright = 1;
+	}
+    public void AdjustBrightnessNormal(){
+        colorBright = 2;
+	}
+    public void AdjustBrightnessDark(){
+        colorBright = 3;
 	}
     public void Adjust(){
-        ProcentText.text = "Вы выбрали w="+(int)colorBright+"%. Посмотретие на формулу." + Environment.NewLine + "Дано:" + Environment.NewLine + "m(Al2O3) = 100грамм" + Environment.NewLine + "w = "+(int)colorBright+"%" + Environment.NewLine + "Найти: m добавки" + Environment.NewLine + "Вставьте пропуски в поля и нажмите 'Равно'";
+       // ProcentText.text = "Вы выбрали w="+(int)colorBright+"%. Посмотретие на формулу." + Environment.NewLine + "Дано:" + Environment.NewLine + "m(Al2O3) = 100грамм" + Environment.NewLine + "w = "+(int)colorBright+"%" + Environment.NewLine + "Найти: m добавки" + Environment.NewLine + "Вставьте пропуски в поля и нажмите 'Равно'";
     }
     public void AdjustTemperature(float choise){
         Temp = choise;
@@ -141,5 +150,9 @@ public class ConstantData : MonoBehaviour
     {
         mixer.SetFloat ("MusicVol",Mathf.Log10(mixerLevel)*20);
         ConstantData.mixerLevel = mixerLevel;
+    }
+
+    public void LibraZSecond(){
+        SlotSecondPhase.secondTask = true;
     }
 }

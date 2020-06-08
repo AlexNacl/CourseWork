@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     public Animator animator;
     public Animator Roboanimator;
     public Animator AngryRoboanimator;
+    public GameObject Back;
 
     private Queue<string> sentences;
 
@@ -65,6 +66,7 @@ public class DialogManager : MonoBehaviour
         animator.SetBool("IsOne", false);
         Roboanimator.SetBool("IsOneRobo", false);
         AngryRoboanimator.SetBool("IsOneRobo", false);
+        Back.SetActive(false);
         if (ifNextScene == true){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
